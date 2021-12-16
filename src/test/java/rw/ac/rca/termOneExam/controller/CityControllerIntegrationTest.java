@@ -43,21 +43,21 @@ public class CityControllerIntegrationTest {
 
     @Test
     public void getById_failure() throws JSONException {
-        ResponseEntity<APIResponse> res = this.restTemplate.getForEntity(baseUrl+"/id/600",APIResponse.class);
+        ResponseEntity<APIResponse> res = this.restTemplate.getForEntity(baseUrl+"/id/500",APIResponse.class);
 
         assertTrue(res.getStatusCodeValue()==404);
         assertFalse(res.getBody().isStatus());
-        assertEquals("City can't be found by id 600",res.getBody().getMessage());
+        assertEquals("City can't be found by id 500",res.getBody().getMessage());
 
     }
 
     @Test
     public void addCity_success() throws JSONException {
-        City requestBody = new City(105,"Cairo",70,12);
+        City requestBody = new City(105,"Nairobi",70,12);
         ResponseEntity<City> myCity = this.restTemplate.postForEntity(baseUrl+"/add",requestBody, City.class);
 
         assertTrue(myCity.getStatusCode().is2xxSuccessful());
-        assertEquals("Cairo",myCity.getBody().getName());
+        assertEquals("Nairobi",myCity.getBody().getName());
 
     }
 
@@ -68,7 +68,7 @@ public class CityControllerIntegrationTest {
 
         assertTrue(res.getStatusCodeValue()==400);
         assertFalse(res.getBody().isStatus());
-        assertEquals("City name Kigali is there already",res.getBody().getMessage());
+        assertEquals("City name 'Kigali' is there already",res.getBody().getMessage());
 
     }
 

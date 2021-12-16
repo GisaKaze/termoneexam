@@ -30,7 +30,7 @@ public class CityServiceTest {
     public void getAll_success() {
 
         when(cityRepositoryMock.findAll()).thenReturn(Arrays.asList(new City(104, "Kigali", 24, 70),
-                new City(2, "Bujumbura", 26, 10)));
+                new City(2, "Kampala", 26, 10)));
         assertEquals(75.2, cityService.getAll().get(0).getFahrenheit());
     }
 
